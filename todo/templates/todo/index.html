@@ -1,0 +1,20 @@
+<!-- todo/templates/todo/index.html -->
+{% extends 'todo/base.html' %}
+
+{% block title %}Home - To-Do{% endblock %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="task" placeholder="Add a new task">
+    <button type="submit">Add</button>
+  </form>
+
+  <ul class="task-list">
+    {% for task in tasks %}
+      <li>{{ task.title }}</li>
+    {% empty %}
+      <li>No tasks yet!</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
